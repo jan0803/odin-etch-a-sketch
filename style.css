@@ -32,12 +32,23 @@ h1 {
     background-color: blue;
 }
 
-.menu-container, .content-container, .empty-container {
+.main-item {
     background-color: red;
     flex: auto;
     border: 2px solid white;
+    display: flex;
 }
 
 .content-container {
     flex: 2;
+    justify-content: center;
+    align-items: center;
+}
+
+.sketch-container {
+    background-color: grey;
+    width: auto;
+    height: 100%;
+    aspect-ratio: 1/1;
+    box-sizing: content-box;
 }
