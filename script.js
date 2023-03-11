@@ -1,11 +1,14 @@
 let gridSize = 16;
 let squareSize = 6.25;
+let toggleOn = false;
+let penColor = 'black';
 
 //calculating the squares size
 squareSize = (100/gridSize);
 
 const sketchContainer = document.getElementById('sketch-container');
 const clearButton = document.getElementById('clear-button');
+const eraserButton = document.getElementById('eraser-button');
 
 //inserting the squares into the container, depending on the gridSize
 for (let i=0; i < gridSize; i++) {
@@ -36,6 +39,7 @@ for (let i=0; i < squares.length; i++) {
 
 //Eventlisteners for the buttons
 clearButton.addEventListener('click', clearSquares);
+eraserButton.addEventListener('click', eraserOnOf);
 
 //function to clear the squares color
 function clearSquares() {
@@ -44,8 +48,24 @@ function clearSquares() {
     }
 }
 
+//function to toggle eraser, make changeColor white or black
+function eraserOnOf() {
+    if (toggleOn) {
+        //change color to black
+        penColor = 'black';
+        toggleOn = false;
+    }
+    else {
+        //Change button style
+        
+        //change color to white
+        penColor = 'white';
+        toggleOn = true;
+    }
+}
+
 //function to change the color of the div
 function changeColor(e) {
     console.log('color Change!');
-    squares[e].style.backgroundColor = 'black';
+    squares[e].style.backgroundColor = `${penColor}`;
 }
