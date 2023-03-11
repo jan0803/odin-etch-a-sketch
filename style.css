@@ -122,8 +122,29 @@ button:hover {
 }
 
 .modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem   ;
     background-color: white;
-    width: 60rem;
-    height: 20rem;
+    width: 50rem;
+    height: fit-content;
     border-radius: 1.5rem;
+    padding: 3rem;
+    box-sizing: border-box;
+}
+
+.modal-header, .modal-content-body {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.modal-header {
+    justify-content: space-between;
+}
+
+.modal-header > img {
+    width: 2rem;
 }
