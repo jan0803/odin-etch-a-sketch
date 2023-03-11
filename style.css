@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DotGothic16&display=swap');
 
 * {
     font-family: 'Nunito', sans-serif;
@@ -16,11 +17,10 @@ body {
 }
 
 h1 {
-    font-family: 'Nunito', sans-serif;
-    font-size: 5rem;
-    text-transform: uppercase;
+    font-family: 'DotGothic16', sans-serif;
+    font-size: 6rem;
     color: rgb(20, 21, 22);
-    font-weight:300;
+    /*font-weight:300;*/
     text-align: center;
 }
 
