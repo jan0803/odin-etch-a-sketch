@@ -35,14 +35,14 @@ h1 {
 
 .main-item {
     flex: 8;
-    border: 2px solid white;
+    border: 2px solid black;
     display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .content-container {
     flex: 9;
-    justify-content: center;
-    align-items: center;
 }
 
 .sketch-container {
@@ -64,7 +64,12 @@ h1 {
     background-color: white;
 }
 
-.menu-container {
+.menu-container-content {
+    display: flex;
     flex-direction: column;
     align-items: flex-end;
+    max-height: 100%;
+    width: 100%;
+    aspect-ratio: 1/1;
+    box-sizing: content-box;    
 }
