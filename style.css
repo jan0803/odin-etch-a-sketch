@@ -35,7 +35,7 @@ h1 {
 
 .main-item {
     flex: 8;
-    border: 2px solid black;
+    border: 2px solid white;
     display: flex;
     justify-content: center;
     align-items: center;
