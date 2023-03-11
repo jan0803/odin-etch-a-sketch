@@ -15,7 +15,7 @@
         <div class="menu-container main-item">
             <div class="menu-container-content">
                 <div class="top-container">
-                    <button id="color-button">
+                    <button id="color-button" type="color">
                         <img src="./icons/palette_FILL0_wght200_GRAD0_opsz48.png" alt="C">
                         COLOR</button>
                     <button id="eraser-button">
@@ -44,6 +44,23 @@
             </div>
         </div>
         <div class="empty-container main-item"></div>
+    </div>
+
+    <div class="modal" id="squares-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Change how many squares per side</h2>
+                <img src="./icons/close_FILL0_wght200_GRAD0_opsz48.png" alt="CLOSE" id="modal-close-img-squares">
+            </div>
+            <div class="modal-content-body">
+                <input type="text">
+                <p>default 16 x 16</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="color-modal">
+
     </div>
 
     <script src="script.js"></script>

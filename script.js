@@ -9,6 +9,8 @@ squareSize = (100/gridSize);
 const sketchContainer = document.getElementById('sketch-container');
 const clearButton = document.getElementById('clear-button');
 const eraserButton = document.getElementById('eraser-button');
+const modalSquares = document.getElementById('squares-modal');
+const modalCloseButton = document.getElementById('modal-close-img-squares');
 
 //inserting the squares into the container, depending on the gridSize
 for (let i=0; i < gridSize; i++) {
@@ -40,12 +42,18 @@ for (let i=0; i < squares.length; i++) {
 //Eventlisteners for the buttons
 clearButton.addEventListener('click', clearSquares);
 eraserButton.addEventListener('click', eraserOnOf);
+modalCloseButton.addEventListener('click', closeModalSquares);
 
 //function to clear the squares color
 function clearSquares() {
     for (let i=0; i < squares.length; i++) {
         squares[i].style.backgroundColor = 'white';
     }
+}
+
+//function to close Modal (display none)
+function closeModalSquares() {
+    modalSquares.style.display = 'none';
 }
 
 //function to toggle eraser, make changeColor white or black
