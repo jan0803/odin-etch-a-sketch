@@ -148,3 +148,7 @@ button:hover {
 .modal-header > img {
     width: 2rem;
 }
+
+.modal-content-body {
+    gap: 2rem;
+}
