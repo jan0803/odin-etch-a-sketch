@@ -1,6 +1,6 @@
 let gridSize = 16;
 let squareSize = 6.25;
-let toggleOn = false;
+let eraserToggleOn = false;
 let penColor = 'black';
 
 //calculating the squares size
@@ -50,17 +50,17 @@ function clearSquares() {
 
 //function to toggle eraser, make changeColor white or black
 function eraserOnOf() {
-    if (toggleOn) {
+    if (eraserToggleOn) {
         //change color to black
         penColor = 'black';
-        toggleOn = false;
+        eraserToggleOn = false;
     }
     else {
         //Change button style
-        
+
         //change color to white
         penColor = 'white';
-        toggleOn = true;
+        eraserToggleOn = true;
     }
 }
 
