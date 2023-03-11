@@ -51,13 +51,15 @@ function clearSquares() {
 //function to toggle eraser, make changeColor white or black
 function eraserOnOf() {
     if (eraserToggleOn) {
+        //change button style
+        eraserButton.style.cssText = 'border:none;';
         //change color to black
         penColor = 'black';
         eraserToggleOn = false;
     }
     else {
         //Change button style
-
+        eraserButton.style.cssText = 'border: 2px solid black;';
         //change color to white
         penColor = 'white';
         eraserToggleOn = true;
