@@ -63,3 +63,8 @@ h1 {
     box-sizing: border-box;
     background-color: white;
 }
+
+.menu-container {
+    flex-direction: column;
+    align-items: flex-end;
+}
