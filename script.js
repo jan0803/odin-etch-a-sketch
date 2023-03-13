@@ -8,6 +8,7 @@ const sketchContainer = document.getElementById('sketch-container');
 
 const clearButton = document.getElementById('clear-button');
 const eraserButton = document.getElementById('eraser-button');
+const gridButton = document.getElementById('grid-button');
 const squaresButton = document.getElementById('squares-button');
 
 const modalSquares = document.getElementById('squares-modal');
@@ -66,6 +67,16 @@ function addListenerForAllSquares() {
 //Eventlisteners for the buttons
 clearButton.addEventListener('click', clearSquares);
 eraserButton.addEventListener('click', eraserOnOf);
+gridButton.addEventListener('click', function() {
+    for (let i=0; i < squares.length; i++){
+        if ((i+1) % gridSize  !== 0) {
+            squares[i].style.borderRight = '1px solid grey';
+        }
+        if (i < (gridSize*(gridSize - 1))) {
+            squares[i].style.borderBottom = '1px solid grey';
+        }
+    }
+});
 
 squaresButton.addEventListener('click', openModalSquares);
 modalCloseButtonSq.addEventListener('click', closeModalSquares);
@@ -86,9 +97,7 @@ modalInputSq.addEventListener('change', (e) => {
         initilizeGrid();
         
         closeModalSquares();
-    }
-    
-    
+    } 
 });
 
 //function to clear the squares color
