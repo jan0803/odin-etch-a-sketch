@@ -4,7 +4,9 @@ let eraserToggleOn = false;
 let penColor = 'black';
 
 //calculating the squares size
-squareSize = (100/gridSize);
+function calculateSquareSize () {
+    squareSize = (100/gridSize);
+}
 
 
 const sketchContainer = document.getElementById('sketch-container');
@@ -14,47 +16,88 @@ const eraserButton = document.getElementById('eraser-button');
 const squaresButton = document.getElementById('squares-button');
 
 const modalSquares = document.getElementById('squares-modal');
-const modalCloseButton = document.getElementById('modal-close-img-squares');
+const modalCloseButtonSq = document.getElementById('modal-close-img-squares');
+const modalInputSq = document.getElementById('modal-input-squares');
 
+function initilizeGrid () {
+    calculateSquareSize();
 
-//inserting the squares into the container, depending on the gridSize
-for (let i=0; i < gridSize; i++) {
+    //inserting the squares into the container, depending on the gridSize
+    for (let i=0; i < gridSize; i++) {
 
-    for (let j=0; j < gridSize; j++) {
-        let square = document.createElement('div');
-        square.className = 'square';
+        for (let j=0; j < gridSize; j++) {
+            let square = document.createElement('div');
+            square.className = 'square';
 
-        sketchContainer.appendChild(square);
+            sketchContainer.appendChild(square);
+        }
+
     }
-
 }
 
-const squares = document.getElementsByClassName('square');
+initilizeGrid();
+
+let squares = document.getElementsByClassName('square');
+
+setSquareSize();
+addListenerForAllSquares();
 
 //setting square size
-for (let i=0; i < squares.length; i++) {
-    squares[i].style.width = `${squareSize}%`;
-    squares[i].style.height = `${squareSize}%`;
+function setSquareSize() {
+    for (let i=0; i < squares.length; i++) {
+        squares[i].style.width = `${squareSize}%`;
+        squares[i].style.height = `${squareSize}%`;
+    }
 }
 
+
 //adding eventListeners for the squares
-for (let i=0; i < squares.length; i++) {
+function addListenerForAllSquares() {
+   for (let i=0; i < squares.length; i++) {
     squares[i].addEventListener('mouseover', function() {
         changeColor(i);
     });
+} 
 }
+
 
 //Eventlisteners for the buttons
 clearButton.addEventListener('click', clearSquares);
 eraserButton.addEventListener('click', eraserOnOf);
+
 squaresButton.addEventListener('click', openModalSquares);
-modalCloseButton.addEventListener('click', closeModalSquares);
+modalCloseButtonSq.addEventListener('click', closeModalSquares);
+
+modalInputSq.addEventListener('change', (e) => {
+    //set Grid Size from input value
+    setGridSize(e.currentTarget.value);
+    //calculate grid size
+    calculateSquareSize();
+    //remove all squares
+    while (sketchContainer.firstChild) {
+        sketchContainer.removeChild(sketchContainer.lastChild);
+    }
+    //Initilize grid from new
+    initilizeGrid();
+
+    let squares = document.getElementsByClassName('square');
+
+    setSquareSize();
+    addListenerForAllSquares();
+
+    closeModalSquares();
+});
 
 //function to clear the squares color
 function clearSquares() {
     for (let i=0; i < squares.length; i++) {
         squares[i].style.backgroundColor = 'white';
     }
+}
+
+function setGridSize(evalue) {
+    gridSize = evalue;
+
 }
 
 //function to open Modal-squares
