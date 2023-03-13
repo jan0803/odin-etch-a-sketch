@@ -2,12 +2,7 @@ let gridSize = 16;
 let squareSize = 6.25;
 let eraserToggleOn = false;
 let penColor = 'black';
-
-//calculating the squares size
-function calculateSquareSize () {
-    squareSize = (100/gridSize);
-}
-
+let squares;
 
 const sketchContainer = document.getElementById('sketch-container');
 
@@ -19,9 +14,19 @@ const modalSquares = document.getElementById('squares-modal');
 const modalCloseButtonSq = document.getElementById('modal-close-img-squares');
 const modalInputSq = document.getElementById('modal-input-squares');
 
-function initilizeGrid () {
+initilizeGrid();
+
+function initilizeGrid() {
+    addSquaresToHTML();
     calculateSquareSize();
 
+    squares = document.getElementsByClassName('square');
+
+    setSquareSize();
+    addListenerForAllSquares();
+}
+
+function addSquaresToHTML () {
     //inserting the squares into the container, depending on the gridSize
     for (let i=0; i < gridSize; i++) {
 
@@ -35,12 +40,11 @@ function initilizeGrid () {
     }
 }
 
-initilizeGrid();
+//calculating the squares size
+function calculateSquareSize () {
+    squareSize = (100/gridSize);
+}
 
-let squares = document.getElementsByClassName('square');
-
-setSquareSize();
-addListenerForAllSquares();
 
 //setting square size
 function setSquareSize() {
@@ -71,19 +75,13 @@ modalCloseButtonSq.addEventListener('click', closeModalSquares);
 modalInputSq.addEventListener('change', (e) => {
     //set Grid Size from input value
     setGridSize(e.currentTarget.value);
-    //calculate grid size
-    calculateSquareSize();
+
     //remove all squares
     while (sketchContainer.firstChild) {
         sketchContainer.removeChild(sketchContainer.lastChild);
     }
     //Initilize grid from new
     initilizeGrid();
-
-    let squares = document.getElementsByClassName('square');
-
-    setSquareSize();
-    addListenerForAllSquares();
 
     closeModalSquares();
 });
@@ -95,9 +93,9 @@ function clearSquares() {
     }
 }
 
+//function to set the grid size
 function setGridSize(evalue) {
     gridSize = evalue;
-
 }
 
 //function to open Modal-squares
