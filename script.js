@@ -1,6 +1,7 @@
 let gridSize = 16;
 let squareSize = 6.25;
 let eraserToggleOn = false;
+let gridToggleOn = false;
 let penColor = 'black';
 let squares;
 
@@ -68,14 +69,23 @@ function addListenerForAllSquares() {
 clearButton.addEventListener('click', clearSquares);
 eraserButton.addEventListener('click', eraserOnOf);
 gridButton.addEventListener('click', function() {
-    for (let i=0; i < squares.length; i++){
-        if ((i+1) % gridSize  !== 0) {
-            squares[i].style.borderRight = '1px solid grey';
+        if (gridToggleOn == true) {
+            for (let i=0; i < squares.length; i++){
+                squares[i].style.border = 'none';
+            }
+            gridToggleOn = false;
         }
-        if (i < (gridSize*(gridSize - 1))) {
-            squares[i].style.borderBottom = '1px solid grey';
-        }
-    }
+        else {
+            for (let i=0; i < squares.length; i++){
+                if ((i+1) % gridSize  !== 0) {
+                    squares[i].style.borderRight = '1px solid grey';
+                }
+                if (i < (gridSize * (gridSize - 1))) {
+                    squares[i].style.borderBottom = '1px solid grey';
+                }
+            }
+            gridToggleOn = true;
+        }   
 });
 
 squaresButton.addEventListener('click', openModalSquares);
