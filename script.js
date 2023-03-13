@@ -73,6 +73,8 @@ gridButton.addEventListener('click', function() {
             for (let i=0; i < squares.length; i++){
                 squares[i].style.border = 'none';
             }
+            //change icon to off
+            document.getElementById('grid-icon').src = './icons/grid_off_FILL0_wght200_GRAD0_opsz48.png';
             gridToggleOn = false;
         }
         else {
@@ -84,6 +86,8 @@ gridButton.addEventListener('click', function() {
                     squares[i].style.borderBottom = '1px solid grey';
                 }
             }
+            //change icon to on
+            document.getElementById('grid-icon').src = './icons/grid_on_FILL0_wght200_GRAD0_opsz48.png';
             gridToggleOn = true;
         }   
 });
