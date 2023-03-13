@@ -1,14 +1,21 @@
 let gridSize = 16;
 let squareSize = 6.25;
+
 let eraserToggleOn = false;
 let gridToggleOn = false;
+
+let hoverValue = 'mouseover';
 let penColor = 'black';
 let squares;
+
+
 
 const sketchContainer = document.getElementById('sketch-container');
 
 const clearButton = document.getElementById('clear-button');
 const eraserButton = document.getElementById('eraser-button');
+
+const hoverButton = document.getElementById('hover-button');
 const gridButton = document.getElementById('grid-button');
 const squaresButton = document.getElementById('squares-button');
 
@@ -16,7 +23,10 @@ const modalSquares = document.getElementById('squares-modal');
 const modalCloseButtonSq = document.getElementById('modal-close-img-squares');
 const modalInputSq = document.getElementById('modal-input-squares');
 
+
+
 initilizeGrid();
+
 
 function initilizeGrid() {
     addSquaresToHTML();
@@ -57,17 +67,41 @@ function setSquareSize() {
 
 //adding eventListeners for the squares
 function addListenerForAllSquares() {
-   for (let i=0; i < squares.length; i++) {
-    squares[i].addEventListener('mouseover', function() {
-        changeColor(i);
-    });
-} 
+    for (let i=0; i < squares.length; i++) {
+        squares[i].addEventListener(`${hoverValue}`, () => {
+            changeColor(i);
+        });
+    } 
+}
+
+function removeListenerForAllSquares(type, func) {
+    for (let i=0; i < squares.length; i++) {
+        squares[i].removeEventListener(type, arguments.calee);
+    }
 }
 
 
 //Eventlisteners for the buttons
 clearButton.addEventListener('click', clearSquares);
 eraserButton.addEventListener('click', eraserOnOf);
+
+hoverButton.addEventListener('click', function(){
+    if (hoverValue === 'mouseover') {
+        hoverValue = 'click';
+        console.log(hoverValue);
+       
+        removeListenerForAllSquares('click', arguments.callee);
+        addListenerForAllSquares();
+        console.log(hoverValue);
+    }
+    else {
+        hoverValue = 'mouseover';
+        removeListenerForAllSquares('mouseover', arguments.callee);
+        addListenerForAllSquares();
+        console.log(hoverValue);
+    }
+});
+
 gridButton.addEventListener('click', function() {
         if (gridToggleOn == true) {
             for (let i=0; i < squares.length; i++){
