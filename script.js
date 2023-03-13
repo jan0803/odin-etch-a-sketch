@@ -71,17 +71,24 @@ squaresButton.addEventListener('click', openModalSquares);
 modalCloseButtonSq.addEventListener('click', closeModalSquares);
 
 modalInputSq.addEventListener('change', (e) => {
-    //set Grid Size from input value
-    setGridSize(e.currentTarget.value);
-
-    //remove all squares
-    while (sketchContainer.firstChild) {
-        sketchContainer.removeChild(sketchContainer.lastChild);
+    if (e.currentTarget.value > 100) {
+        alert('Your Input is greater then 100')
     }
-    //Initilize grid from new
-    initilizeGrid();
+    else {
+       //set Grid Size from input value
+        setGridSize(e.currentTarget.value);
 
-    closeModalSquares();
+        //remove all squares
+        while (sketchContainer.firstChild) {
+            sketchContainer.removeChild(sketchContainer.lastChild);
+        }
+        //Initilize grid from new
+        initilizeGrid();
+        
+        closeModalSquares();
+    }
+    
+    
 });
 
 //function to clear the squares color

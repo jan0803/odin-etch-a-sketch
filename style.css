@@ -165,3 +165,9 @@ button:hover {
     border: 1px solid black;
     font-size: 1.1rem;
 }
+
+.modal-bottom-text {
+    display: flex;
+    width: 100%;
+    font-size: 1.1rem;
+}
