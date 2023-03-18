@@ -7,11 +7,13 @@ let gridToggleOn = false;
 let hoverValue = 'mouseover';
 let penColor = 'black';
 let squares;
-
+//to store color temporary
+let tmp;
 
 
 const sketchContainer = document.getElementById('sketch-container');
 
+const colorButton = document.getElementById('color-button');
 const clearButton = document.getElementById('clear-button');
 const eraserButton = document.getElementById('eraser-button');
 
@@ -23,7 +25,9 @@ const modalSquares = document.getElementById('squares-modal');
 const modalCloseButtonSq = document.getElementById('modal-close-img-squares');
 const modalInputSq = document.getElementById('modal-input-squares');
 
-
+const modalColor = document.getElementById('color-modal');
+const modalCloseButtonCol = document.getElementById('modal-close-img-color');
+const inputColor = document.getElementById('color-input');
 
 initilizeGrid();
 
@@ -35,7 +39,7 @@ function initilizeGrid() {
     squares = document.getElementsByClassName('square');
 
     setSquareSize();
-    addListenerForAllSquares();
+    addListenerForAllSquaresMouseover();
 }
 
 function addSquaresToHTML () {
@@ -66,20 +70,21 @@ function setSquareSize() {
 
 
 //adding eventListeners for the squares
-function addListenerForAllSquares() {
+function addListenerForAllSquaresMousedown() {
     for (let i=0; i < squares.length; i++) {
-        squares[i].addEventListener(`${hoverValue}`, () => {
+        squares[i].addEventListener('mousedown', () => {
             changeColor(i);
         });
     } 
 }
 
-function removeListenerForAllSquares(type, func) {
+function addListenerForAllSquaresMouseover() {
     for (let i=0; i < squares.length; i++) {
-        squares[i].removeEventListener(type, arguments.calee);
-    }
+        squares[i].addEventListener('mouseover', () => {
+            changeColor(i);
+        });
+    } 
 }
-
 
 //Eventlisteners for the buttons
 clearButton.addEventListener('click', clearSquares);
@@ -87,18 +92,41 @@ eraserButton.addEventListener('click', eraserOnOf);
 
 hoverButton.addEventListener('click', function(){
     if (hoverValue === 'mouseover') {
-        hoverValue = 'click';
-        console.log(hoverValue);
-       
-        removeListenerForAllSquares('click', arguments.callee);
-        addListenerForAllSquares();
-        console.log(hoverValue);
+
+        while (sketchContainer.firstChild) {
+            sketchContainer.removeChild(sketchContainer.lastChild);
+        }
+
+        document.getElementById('hover-button-text').innerText = "CLICK";
+
+        hoverValue = 'mousedown';
+
+        addSquaresToHTML();
+        calculateSquareSize();
+
+         squares = document.getElementsByClassName('square');
+
+        setSquareSize();
+        addListenerForAllSquaresMousedown();
     }
     else {
+        
+        while (sketchContainer.firstChild) {
+            sketchContainer.removeChild(sketchContainer.lastChild);
+        }
+
+        document.getElementById('hover-button-text').innerText = "HOVER";
+
         hoverValue = 'mouseover';
-        removeListenerForAllSquares('mouseover', arguments.callee);
-        addListenerForAllSquares();
-        console.log(hoverValue);
+
+        addSquaresToHTML();
+        calculateSquareSize();
+
+         squares = document.getElementsByClassName('square');
+
+        setSquareSize();
+        addListenerForAllSquaresMouseover();
+    
     }
 });
 
@@ -148,6 +176,26 @@ modalInputSq.addEventListener('change', (e) => {
     } 
 });
 
+colorButton.addEventListener('click', openModalColor);
+modalCloseButtonCol.addEventListener('click', closeModalColor);
+
+inputColor.addEventListener('input', (c) => {
+    if (eraserToggleOn) {
+        document.getElementById('color-modal-text').style.color = 'black';
+    }
+    else {
+        penColor = c.currentTarget.value;
+        tmp = c.currentTarget.value;
+        document.getElementById('color-button-text').style.color = penColor;
+        document.getElementById('color-button-text').style.filter = 'invert(100%) saturate(0%)';
+        document.getElementById('color-palette').style.fill = penColor;
+        document.getElementById('color-palette').style.filter = 'invert(100%) saturate(0%)';
+        colorButton.style.backgroundColor = penColor;
+        console.log(c.currentTarget.value); 
+    }
+    
+});
+
 //function to clear the squares color
 function clearSquares() {
     for (let i=0; i < squares.length; i++) {
@@ -165,26 +213,38 @@ function openModalSquares() {
     modalSquares.style.display = 'flex';
 }
 
+function openModalColor () {
+    modalColor.style.display = 'flex';
+}
+
 //function to close Modal-squares (display none)
 function closeModalSquares() {
     modalSquares.style.display = 'none';
 }
 
+function closeModalColor() {
+    modalColor.style.display = 'none';
+}
+
 //function to toggle eraser, make changeColor white or black
 function eraserOnOf() {
     if (eraserToggleOn) {
+        document.getElementById('color-modal-text').style.color = 'white';
         //change button style
         eraserButton.style.cssText = 'border:none;';
         //change color to black
-        penColor = 'black';
+        penColor = tmp;
         eraserToggleOn = false;
+        console.log(penColor);
     }
     else {
+        tmp = penColor;
         //Change button style
         eraserButton.style.cssText = 'border: 2px solid black;';
         //change color to white
         penColor = 'white';
         eraserToggleOn = true;
+        console.log(penColor);
     }
 }
 

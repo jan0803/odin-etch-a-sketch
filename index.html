@@ -16,8 +16,23 @@
             <div class="menu-container-content">
                 <div class="top-container">
                     <button id="color-button" type="color">
-                        <img src="./icons/palette_FILL0_wght200_GRAD0_opsz48.png" alt="C">
-                        COLOR</button>
+                        <svg id="color-palette" version="1.0" xmlns="http://www.w3.org/2000/svg"
+                        width="48.000000pt" height="48.000000pt" viewBox="0 0 48.000000 48.000000"
+                        preserveAspectRatio="xMidYMid meet">
+                            <g transform="translate(0.000000,48.000000) scale(0.100000,-0.100000)"
+                             stroke="none">
+                                <path d="M159 397 c-131 -69 -130 -248 1 -315 75 -38 120 -26 97 25 -14 32 7
+                                53 52 53 137 0 150 175 18 239 -57 27 -113 27 -168 -2z m168 -14 c46 -21 73
+                                -67 73 -120 0 -58 -25 -83 -83 -83 -67 0 -90 -28 -76 -90 6 -22 -48 -14 -92
+                                15 -95 62 -91 216 7 272 47 28 121 30 171 6z"/>
+                                <path d="M175 339 c-10 -15 1 -23 20 -15 9 3 13 10 10 16 -8 13 -22 13 -30 -1z"/>
+                                <path d="M275 340 c-3 -6 1 -13 10 -16 19 -8 30 0 20 15 -8 14 -22 14 -30 1z"/>
+                                <path d="M115 260 c-8 -13 4 -32 16 -25 12 8 12 35 0 35 -6 0 -13 -4 -16 -10z"/>
+                                <path d="M342 256 c1 -10 8 -17 13 -17 15 1 12 24 -3 29 -9 3 -13 -2 -10 -12z"/>
+                            </g>
+                        </svg>
+                        <p id="color-button-text">COLOR
+                    </button></p>
                     <button id="eraser-button">
                         <img src="./icons/edit_FILL0_wght200_GRAD0_opsz48.png" alt="E">
                         ERASER</button>
@@ -28,7 +43,8 @@
                 <div class="bottom-container">
                     <button id="hover-button">
                         <img src="./icons/mouse_FILL0_wght200_GRAD0_opsz48.png" alt="M">
-                        HOVER</button>
+                        <p id="hover-button-text">HOVER</p>
+                    </button>
                     <button id="grid-button">
                         <img src="./icons/grid_off_FILL0_wght200_GRAD0_opsz48.png" alt="off" id="grid-icon">
                         GRID</button>
@@ -63,8 +79,19 @@
         </div>
     </div>
 
-    <div id="color-modal">
-
+    <div class="modal" id="color-modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Change the color!</h2>
+                <img src="./icons/close_FILL0_wght200_GRAD0_opsz48.png" alt="CLOSE" id="modal-close-img-color">
+            </div>
+            <div class="modal-content-body">
+                <input type="color" name="color" id="color-input">
+            </div>
+            <div class="modal-bottom-text">
+                <p id="color-modal-text" style="color:white;">Please turn the <span style="font-weight: 800;">ERASER</span> off first!</p>
+            </div>
+        </div>
     </div>
 
     <script src="script.js"></script>
